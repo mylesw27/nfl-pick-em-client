@@ -1,4 +1,4 @@
-{
+export const data = {
     "games": [
         {
             "label": "matchup1",
