@@ -1,4 +1,4 @@
-#Install instructions:
+# Install instructions:
 
 - Fork and clone this Repo
 - cd into it
