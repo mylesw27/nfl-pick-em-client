@@ -20,6 +20,9 @@
 .teamCard {
     margin: 0px 0;
     border-radius: 5px;
+    height: 200px;
+    width: 200px;
+    background-size: contain;
 }
 
 .teamCard p {
@@ -32,4 +35,15 @@
     margin: 0 30px;
     display: flex;
     justify-content: baseline;
+}
+
+.teamCard :active {
+    border-color: rgba(0, 0, 0, 0);
+    /* color: pink */
+}
+
+.teamLogo {
+    width: 100px;
+    height: 100px;
+    posi;
 }

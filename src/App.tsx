@@ -13,9 +13,17 @@ function App() {
             element={<Home />} 
             />
           <Route 
-            path='/schedule/:week' 
+            path='/picks/:week' 
             element={<Picks />} 
             />
+          {/* <Route 
+            path='/leagues/' 
+            element={<Leagues />} 
+            />
+          <Route 
+            path='/leagues/:leagueId' 
+            element={<LeagueSpecific />} 
+            /> */}
         </Routes>
       </Router>
     </>
