@@ -44,6 +44,9 @@ export default function MatchupCard(props: {
         } else if (props.winner === homeTeam.id) {
             homeRef.current.style.boxShadow=`0px 0px 10px 2px ${homeTeam.team_color_2}`
             awayRef.current.style.boxShadow="none" 
+        } else {
+            awayRef.current.style.boxShadow="none"
+            homeRef.current.style.boxShadow="none"
         }
     }
 
