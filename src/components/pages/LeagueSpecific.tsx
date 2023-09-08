@@ -19,7 +19,8 @@ export default function LeagueSpecific () {
         const getLeague = async () => {
             const res = await axios.get(`${api}leagues/${leagueId}`)
             const membersRes = await axios.get(`${api}leaguemembersdata?league=${leagueId}`)
-            const picksRes = await axios.get(`${api}picksdata?league=${leagueId}`)
+            const picksRes = await axios.get(`${api}picksdata?league=${leagueId}&week=${week}`)
+            console.log(`${api}picksdata?league=${leagueId}&week=${week}`)
             let scheduleObject: any = {}
             const scheduleRes = await axios.get(`${api}scheduledata?week=${week}`)
             scheduleRes.data.forEach((game: game) => {
@@ -32,7 +33,7 @@ export default function LeagueSpecific () {
             setScheduleArray(scheduleRes.data)
         }
         getLeague()
-    }, [leagueId])
+    }, [leagueId, week])
 
     const scheduleHeaderArray = scheduleArray.map((game: {id: number, schedule_week: number, schedule_home_team: team, schedule_away_team: team}) => {
         return (
@@ -41,7 +42,7 @@ export default function LeagueSpecific () {
     })
 
     const leagueMembersArray = leagueMembers.map((member: user_id) => {
-        const userPicksArray = picks.filter((pick: {user_id: number, week: number}) => { return pick.user_id.id == member.id})
+        const userPicksArray = picks.filter((pick: {user_id: number, week: number}) => { return pick.user_id.id == member.user_id.id})
 
         let userPicksObject: any = {}
         userPicksArray.forEach((pick: pick) => {
@@ -68,11 +69,18 @@ export default function LeagueSpecific () {
         )
     })
 
+    const handleChangeWeek = async (e: any) => {
+        const weekInt = parseInt(e.target.value)
+        setWeek(weekInt)
+    }
+
+    console.log(picks)
+
     return (
         <>
             <h1>{league.league_name}</h1>
             <label htmlFor="week">Week</label>
-            <select name="week" id="week" defaultValue={1}>
+            <select name="week" id="week" defaultValue={1} onChange={(e) => handleChangeWeek(e)}>
                 <option value="1">Week 1</option>
                 <option value="2">Week 2</option>
             </select>
